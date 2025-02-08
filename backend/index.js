@@ -4,7 +4,9 @@ import connectDB from "./utils/ConnectDB.js";
 import cors from "cors";
 import userRoute from "./routes/user.routes.js";
 import morgan from "morgan";
+import dotenv from "dotenv"
 
+dotenv.config();
 const app = express();
 
 // Middleware setup
