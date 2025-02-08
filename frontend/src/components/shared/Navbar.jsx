@@ -1,20 +1,20 @@
-import React from "react"
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { Avatar, AvatarImage } from "../ui/avatar"
-import { LogOut, User2 } from "lucide-react"
-import { Link, useNavigate } from "react-router-dom"
-import { Button } from "../ui/button"
-import { useDispatch, useSelector } from "react-redux"
-import { setUser } from "../../redux/authSlice.js"
-import { toast } from "sonner"
-import axios from "axios"
+import React from "react";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { Avatar, AvatarImage } from "../ui/avatar";
+import { LogOut, User2 } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../redux/authSlice.js";
+import { toast } from "sonner";
+import axios from "axios";
 
-const BackendURL = import.meta.env.VITE_BACKEND_URL
+const BackendURL = import.meta.env.VITE_BACKEND_URL;
 
 const Navbar = () => {
-  const { user } = useSelector((store) => store.auth)
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const { user } = useSelector((store) => store.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const logoutHandler = async () => {
     try {
@@ -22,21 +22,21 @@ const Navbar = () => {
         `${BackendURL}/logout`,
         {},
         { withCredentials: true }
-      ) // Ensure it's the correct method
+      ); // Ensure it's the correct method
       if (res.data.success) {
-        dispatch(setUser(null))
-        navigate("/")
-        toast.success(res.data.message)
+        dispatch(setUser(null));
+        navigate("/");
+        toast.success(res.data.message);
       } else {
-        toast.error("Logout failed, please try again.")
+        toast.error("Logout failed, please try again.");
       }
     } catch (error) {
-      console.error("Logout error:", error)
+      console.error("Logout error:", error);
       toast.error(
         error.response?.data?.message || "An error occurred during logout"
-      )
+      );
     }
-  }
+  };
   return (
     <div className="bg-slate-50">
       <div className="flex items-center justify-between mx-auto max-w-7xl h-16">
@@ -107,6 +107,10 @@ const Navbar = () => {
                   </div>
                   <div className="flex flex-col my-2 text-gray-600">
                     <div className="flex w-fit items-center gap-2 cursor-pointer">
+                      <User2 />
+                      <Button variant="link">Profile</Button>
+                    </div> 
+                    <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <LogOut />
                       <Button onClick={logoutHandler} variant="link">
                         Logout
@@ -120,7 +124,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

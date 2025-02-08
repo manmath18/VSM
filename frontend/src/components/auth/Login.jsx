@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser,setLoading} from '../../redux/authSlice.js'
+import { setUser, setLoading } from "../../redux/authSlice.js";
 import { Loader2 } from "lucide-react";
 import { Input } from "../ui/input";
 
@@ -34,13 +34,10 @@ const Login = () => {
       toast.error("Please fill in all fields");
       return;
     }
-    const formData = new FormData();
-    formData.append("email", input.email);
-    formData.append("password", input.password);
 
     try {
       dispatch(setLoading(true));
-      const res = await axios.post(`${backendUrl}/login`, formData, {
+      const res = await axios.post(`${backendUrl}/login`, input, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,9 +51,7 @@ const Login = () => {
       }
     } catch (error) {
       console.error("Login error:", error);
-      toast.error(
-        error.response?.data?.message || "An error occurred during login"
-      );
+      toast.error(error.response?.data?.message || "An error occurred during login");
     } finally {
       dispatch(setLoading(false));
     }
@@ -67,59 +62,80 @@ const Login = () => {
       navigate("/");
     }
   }, [user, navigate]);
+
   return (
-    <div>
+    <div className="bg-gradient-to-r from-purple-300 to-indigo-400 min-h-screen flex flex-col">
       <Navbar />
-      <div className="flex items-center justify-center max-w-7xl mx-auto">
+      <div className="flex items-center justify-center flex-grow">
         <form
           onSubmit={submitHandler}
-          className="w-full md:w-1/2 border border-gray-200 rounded-md p-4 my-10"
+          className="w-full max-w-md bg-white shadow-lg rounded-2xl p-6 md:p-8"
         >
-          <h1 className="font-bold text-xl mb-5">Login</h1>
-          <div className="my-2">
-            <Label>Email</Label>
-            <Input
-              type="email"
-              value={input.email}
-              name="email"
-              autoComplete="current-email"
-              onChange={changeEventHandler}
-              placeholder="Enter your Email Here.."
-              required
-            />
+          <h1 className="text-2xl font-bold text-indigo-700 text-center mb-6">
+            Welcome Back!
+          </h1>
+  
+          <div className="space-y-4">
+            <div>
+              <Label className="text-gray-600">Email</Label>
+              <Input
+                type="email"
+                value={input.email}
+                name="email"
+                autoComplete="current-email"
+                onChange={changeEventHandler}
+                placeholder="Enter your email..."
+                required
+                className="focus:ring-2 focus:ring-indigo-400 transition duration-200"
+              />
+            </div>
+            <div>
+              <Label className="text-gray-600">Password</Label>
+              <Input
+                type="password"
+                value={input.password}
+                name="password"
+                autoComplete="current-password"
+                onChange={changeEventHandler}
+                placeholder="Enter your password..."
+                required
+                className="focus:ring-2 focus:ring-indigo-400 transition duration-200"
+              />
+            </div>
           </div>
-          <div className="my-2">
-            <Label>Password</Label>
-            <Input
-              type="password"
-              value={input.password}
-              name="password"
-              autoComplete="current-password"
-              onChange={changeEventHandler}
-              placeholder="Enter your Password Here.."
-              required
-            />
+  
+          <div className="flex items-center justify-between mt-4">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-indigo-500 hover:underline"
+            >
+              Forgot password?
+            </Link>
           </div>
-          <div className="flex items-center justify-between"></div>
+  
           {loading ? (
-            <Button className="w-full my-4">
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+            <Button className="w-full my-4 flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 text-white transition duration-300">
+              <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Logging in...
             </Button>
           ) : (
-            <Button type="submit" className="w-full my-4 bg-[#6A38C2]">
+            <Button
+              type="submit"
+              className="w-full my-4 bg-indigo-500 hover:bg-indigo-600 text-white transition duration-300"
+            >
               Login
             </Button>
           )}
-          <span className="text-sm">
+  
+          <p className="text-sm text-gray-600 text-center mt-4">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-600">
+            <Link to="/signup" className="text-indigo-500 hover:underline">
               Signup
             </Link>
-          </span>
+          </p>
         </form>
       </div>
     </div>
   );
-};
-
+}
+  
 export default Login;
