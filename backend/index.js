@@ -5,6 +5,7 @@ import cors from "cors";
 import userRoute from "./routes/user.routes.js";
 import morgan from "morgan";
 import dotenv from "dotenv"
+import jobRoute from "./routes/job.routes.js"
 
 dotenv.config();
 const app = express();
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 
 // Routes
 app.use("/api", userRoute);
+app.use("/jobs",jobRoute);
 
 // Set port
 const PORT = process.env.PORT || 3000;
