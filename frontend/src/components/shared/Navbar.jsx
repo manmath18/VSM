@@ -5,7 +5,7 @@ import { LogOut, User2 } from "lucide-react";
 import { Link,useNavigate} from "react-router-dom";
 import { Button } from "../ui/button";
 import { useDispatch, useSelector } from 'react-redux'
-import { setUser } from '@/redux/authSlice'
+import { setUser } from '../../redux/authSlice.js'
 import { toast } from 'sonner'
 import axios from "axios"; 
 

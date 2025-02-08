@@ -6,7 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
-import { setLoading, setUser } from "@/redux/authSlice";
+import { setUser,setLoading} from '../../redux/authSlice.js'
 import { Loader2 } from "lucide-react";
 import { Input } from "../ui/input";
 
