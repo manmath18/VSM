@@ -62,6 +62,14 @@ const userSchema = new mongoose.Schema({
     skills: {
         type: [String],
         default: [] // Empty array ensures it appears in MongoDB
+    },
+    bio: {
+        type: String,
+        default: "" // Default empty string for bio
+    },
+    profilePhoto: {
+        type: String,
+        default: "" // Default empty string for profile photo URL
     }
 }, { timestamps: true });
 
