@@ -118,7 +118,7 @@ const Login = () => {
               <Loader2 className="mr-2 h-5 w-5 animate-spin" /> Logging in...
             </Button>
           ) : (
-            <Button
+             <Button
               type="submit"
               className="w-full my-4 bg-indigo-500 hover:bg-indigo-600 text-white transition duration-300"
             >

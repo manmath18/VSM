@@ -18,7 +18,7 @@ const Home = () => {
       <Features />
       <UpcomingEvents />
       <AlumniAchievements />
-      <AlumniSay />
+      {/* <AlumniSay /> */}
       {/* <Cards /> */}
       <Footer />
     </div>

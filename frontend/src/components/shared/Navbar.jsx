@@ -44,7 +44,7 @@ const Navbar = () => {
           <div className="my-1">
             <Link to="/">
               <h1 className="text-2xl font-bold">
-                <span className="text-[#F83002]">Alumni Connect</span>
+                Alum<span className="text-[#F83002]">Nexus</span>
               </h1>
             </Link>
           </div>
@@ -55,8 +55,10 @@ const Navbar = () => {
               <Link to="/">
                 <li>Home</li>
               </Link>
+              <Link to="/Dir">
               <li>Directory</li>
-              <Link to="/">
+              </Link>
+              <Link to="/jobs">
                 <li>Jobs</li>
               </Link>
               <li>Events</li>
@@ -94,7 +96,7 @@ const Navbar = () => {
                   <div className="flex gap-2 space-y-2">
                     <Avatar className="cursor-pointer">
                       <AvatarImage
-                        src="https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg"
+                        src=""
                         alt=""
                       />
                     </Avatar>
@@ -108,7 +110,7 @@ const Navbar = () => {
                   <div className="flex flex-col my-2 text-gray-600">
                     <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <User2 />
-                      <Button variant="link">Profile</Button>
+                      <Link to="/profile"><Button variant="link">Profile</Button></Link>
                     </div> 
                     <div className="flex w-fit items-center gap-2 cursor-pointer">
                       <LogOut />

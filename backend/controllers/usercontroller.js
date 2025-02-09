@@ -246,3 +246,32 @@ export const updateProfile = async (req, res) => {
         });
     }
 };
+export const getUserData = async (req, res) => {
+    try {
+        const userId = req.params.userID; // Get userId from the request parameters
+        
+        // Find the user by their userId
+        const user = await User.findById(userId).select("-password"); // Exclude password for security
+
+        if (!user) {
+            return res.status(404).json({
+                message: "User not found.",
+                success: false,
+            });
+        }
+
+        // Return the user data (excluding password)
+        return res.status(200).json({
+            message: "User data fetched successfully.",
+            user,
+            success: true,
+        });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({
+            message: "Internal server error.",
+            success: false,
+        });
+    }
+};
+
